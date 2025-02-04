@@ -17,4 +17,4 @@ RUN java -version && mvn -version
 RUN mvn clean package -DskipTests
 
 # Set the entry point to run the application
-CMD ["java", "-jar", "target/your-app.jar"]
+CMD ["java", "-jar", "target/RegistrationLoginSystem-0.0.1-SNAPSHOT.jar"]
