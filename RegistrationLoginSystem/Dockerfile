@@ -1,19 +1,19 @@
-# Use an official OpenJDK 17 image
-FROM eclipse-temurin:17-jdk
+# Use an official OpenJDK runtime as the base image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the Maven project files to the container
-COPY . .
+# Copy the Maven project files (pom.xml and other necessary files)
+COPY ./RegistrationLoginSystem/pom.xml ./ 
 
 # Install Maven
-RUN apt update && apt install -y maven
+RUN apt-get update && apt-get install -y maven
 
-# Verify Java and Maven versions
-RUN java -version && mvn -version
+# Copy the rest of the application code (including source files)
+COPY ./RegistrationLoginSystem/ ./ 
 
-# Package the application
+# Build the application
 RUN mvn clean package -DskipTests
 
 # Set the entry point to run the application
